@@ -4,17 +4,16 @@ using namespace std;
 
 void merge(int arr[], int si, int ei, int mid){
     vector <int> vec;
-     int i = si;   // left part , i start hoga (si) se 
-     int j = mid+1;// right part, j bi start hoga (si) se but right part ke (si) se.
+     int i = si;  
+     int j = mid+1;
 
      while(i <= mid && j <= ei){
         if (arr[i] < arr[j])
         {
-           vec.push_back(arr[i++]);    
-          // hame array ke sabhi element ko add karna hai vector array(vec) mei. isiliye ham arr[i] ko add karne ke baad update bi karna hai aise. arr[i++] ya i++. agar i++ then usko alag se karna padega.        
+           vec.push_back(arr[i++]);
         }else
         {
-              vec.push_back(arr[j++]);
+           vec.push_back(arr[j++]);
         }
      }
 
@@ -28,16 +27,16 @@ void merge(int arr[], int si, int ei, int mid){
 
 
         for(int idx = si, x = 0; idx <= ei; idx++){   
-               arr[idx] = vec[x++];    // move vector array to orignal array. 
+               arr[idx] = vec[x++];    
         }
 }
 void mergesort(int arr[], int si, int ei){
     if(si >= ei){
          return;
     }
-     int mid = si + (ei-si) / 2;    // gives the mid of array
-    mergesort(arr, si, mid);         // for left part of array    
-    mergesort(arr, mid+1, ei);       // for right part of array
+     int mid = si + (ei-si) / 2;    
+    mergesort(arr, si, mid);        
+    mergesort(arr, mid+1, ei);       
 
     merge(arr, si, ei, mid);
 }
