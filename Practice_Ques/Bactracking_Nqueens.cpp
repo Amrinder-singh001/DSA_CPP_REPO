@@ -48,31 +48,28 @@ bool issafe(vector<vector<char> > board, int rows, int cols){
     }
        return true;       
 }
-void NQueens(vector<vector<char> > board, int rows) {
+int NQueens(vector<vector<char> > board, int rows) {
    int n = board.size();
    if(rows == n) {
      printboard(board);
-     return;
+     return 1;
    }
+   int count = 0;
    for(int j=0; j<n; j++){
      if(issafe(board, rows, j)){
         board[rows][j] = 'Q';
-        NQueens(board, rows+1);
+        count += NQueens(board, rows+1);
         board[rows][j] = '.';
      }
    }
+   return count;
 }
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
 
-     vector <vector<char>> board;  
-     /*
-     Ye 2D dynamic array banayi gayi hai C++ me, jisme characters store honge.
-     Outer vector = rows
-     Inner vector<char> = columns
-     */
-      int n = 4;
+     vector <vector<char> > board;  
+      int n = 5;
       for(int i=0; i<n; i++){
         vector<char> newrow;
           for(int j=0; j<n; j++){     
@@ -80,6 +77,7 @@ int main() {
           }
             board.push_back(newrow);
       }
-      NQueens(board, 0);
+      int count = NQueens(board, 0);
+      cout << "Count is : " << count << endl;
     return 0;
 }
