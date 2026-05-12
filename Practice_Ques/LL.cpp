@@ -16,6 +16,14 @@ public:
    Node(int val) {      //constructor
      data = val;
      next = NULL;
+   }
+
+    ~Node(){
+     cout << "~Node " << data << endl;
+      if(next != NULL){
+        delete next;
+        next = NULL;
+      }
    } 
 };
 
@@ -29,7 +37,14 @@ public:
         head = NULL;
         tail = NULL;
      }
-
+    
+     ~List(){
+        cout << "~List" << endl;
+         if(head != NULL){
+            delete head;
+            head = NULL;
+         }
+     }
     // Function For push nodes in the front of LL
     void push_front(int val){
        Node* newNode = new Node(val);
